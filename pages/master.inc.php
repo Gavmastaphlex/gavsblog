@@ -37,9 +37,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li <?php if($page === "home"): ?>class="active" <?php endif; ?>><a href=".\">Home</a></li>
+            <li <?php if($page === "blog"): ?>class="active" <?php endif; ?>><a href=".\?page=blog">Blog</a></li>
           </ul>
+
+          <!-- Add login and register pages!! -->
 
           <ul class="nav navbar-nav navbar-right">
           </ul>
@@ -49,7 +51,10 @@
 
     <!-- This is where we want our content to go -->
 
-    <?php $this->content(); ?>
+    <div class="container">
+      <?php $this->content(); ?>
+      
+    </div>
 
     <footer>
       <p>&copy; Copyright <?php echo date("Y") ?></p>
