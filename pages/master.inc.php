@@ -39,6 +39,8 @@
           <ul class="nav navbar-nav">
             <li <?php if($page === "home"): ?>class="active" <?php endif; ?>><a href=".\">Home</a></li>
             <li <?php if($page === "blog"): ?>class="active" <?php endif; ?>><a href=".\?page=blog">Blog</a></li>
+            <li <?php if($page === "about"): ?>class="active" <?php endif; ?>><a href=".\?page=about">About</a></li>
+            <li <?php if($page === "contact"): ?>class="active" <?php endif; ?>><a href=".\?page=contact">Contact</a></li>
           </ul>
 
           <!-- Add login and register pages!! -->

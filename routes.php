@@ -37,6 +37,16 @@ try {
 				$controller = new BlogController();
 				$controller->store();
 			break;
+
+			case 'about':
+				$controller = new AboutController();
+				$controller->show();
+			break;
+
+			case 'contact':
+				$controller = new ContactController();
+				$controller->show();
+			break;
 		
 		default:
 			echo "There isnt any page matching your request";
