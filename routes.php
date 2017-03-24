@@ -47,6 +47,11 @@ try {
 				$controller = new ContactController();
 				$controller->show();
 			break;
+
+			case 'blog.post':
+				$controller = new BlogController();
+				$controller->SingleBlogPost();
+			break;
 		
 		default:
 			echo "There isnt any page matching your request";

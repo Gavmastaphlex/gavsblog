@@ -2,18 +2,18 @@
 
 namespace App\Views;
 
-class BlogView extends View {
+class SingleBlogPostView extends View {
 
 	public function render(){
 
 		//extract all of the data from the controller
 		extract($this->data);
 		//What page is it
-		$page = "blog.create";
+		$page = "blogpost";
 		//What is the page title
-		$page_title = "Add new blog post";
+		$page_title = "Blogpost";
 		//What is the description of the page
-		$page_desc = "Add new blog post";
+		$page_desc = "This is the blog post Page";
 		//include the master page
 		include "pages/master.inc.php";
 
@@ -23,6 +23,6 @@ class BlogView extends View {
 		//extract the data from the controller
 		extract($this->data);
 		//Choose which page to load from our pages folder
-		include "pages/blog.inc.php";
+		include "pages/singleblogpost.inc.php";
 	}
 }

@@ -23,6 +23,6 @@ class BlogCreateView extends View {
 		//extract the data from the controller
 		extract($this->data);
 		//Choose which page to load from our pages folder
-		include "pages/blog.inc.php";
+		include "pages/blogcreate.inc.php";
 	}
 }
