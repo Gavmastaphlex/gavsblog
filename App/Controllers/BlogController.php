@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Views\BlogCreateView;
 use App\Views\SingleBlogPostView;
+use App\Views\AllBlogView;
 //Tell the controller which view it want to open
 use App\Views\BlogView;
 use App\Models\Blog;
@@ -72,8 +73,6 @@ class BlogController extends Controller{
 	}
 
 
-
-
 	public function SingleBlogPost() {
 
 		//Get the blog post that has the relevant ID
@@ -84,7 +83,16 @@ class BlogController extends Controller{
 	}
 
 
+	public function AllBlogPost() {
 
+		//Get the blog post that has the relevant ID
+		$masterBlog = new Blog();
+		$allBlog = $this -> $masterBlog -> getBlogs();
+		// $listBlogs = $allBlog -> getBlogs;
+		$view = new AllBlogView();
+		$view->render();
+
+	}
 
 
 

@@ -50,7 +50,7 @@ use Intervention\Image\ImageManagerStatic as Image;
  	// Check to see if Originals folder exists
  	// If not create one here
 
- 	$folder = "./images/originals";
+ 	$folder = "../images/originals";
  	if (! is_dir($folder)) {
  		mkdir($folder, 0777, true);
  	}
@@ -62,8 +62,8 @@ use Intervention\Image\ImageManagerStatic as Image;
  	move_uploaded_file($filename, $destination);
 
  	//If Thumbnails folder doesnt exist
- 	if (! is_dir("./images/thumbnails")) {
- 		mkdir("./images/thumbnails", 0777, true);
+ 	if (! is_dir("../images/thumbnails")) {
+ 		mkdir("../images/thumbnails", 0777, true);
  	}
 
  	$destination = $folder . "/" . $newFileName;
@@ -75,7 +75,7 @@ use Intervention\Image\ImageManagerStatic as Image;
  		$constraint->aspectRatio();
  	});
 
- 	$img->save("./images/thumbnails/" . $newFileName);
+ 	$img->save("../images/thumbnails/" . $newFileName);
 
  	//Save the filename in the database - has to be same name as database column
 

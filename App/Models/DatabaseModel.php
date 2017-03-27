@@ -42,6 +42,38 @@ abstract class DatabaseModel{
 
 	}
 
+
+ public function getBlogs() {
+
+        $query = 'SELECT id, title, description, image FROM ' . static::$tableName;
+		
+
+		$rs = $this -> db -> query($query);
+		// $statement = $db->prepare($query);
+
+		$this->data = $record;
+
+		 if($rs) {
+
+            if($rs -> num_rows > 0) {
+
+                $blogs = array();
+
+                while($row = $rs -> fetch_assoc()) {
+                    $blogs[] = $row;
+                }
+
+                return $blogs;
+            } else {
+
+            }
+        } else {
+
+        }
+        return false;
+    }
+
+
 	//Create a function which connects to teh database
 
 	protected static function getDatabaseConnection() {
@@ -218,7 +250,6 @@ public function find($id) {
 	//put the record into the data variable
 
 	$this->data = $record;
-
 
 
 }

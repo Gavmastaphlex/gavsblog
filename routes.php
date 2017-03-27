@@ -52,6 +52,11 @@ try {
 				$controller = new BlogController();
 				$controller->SingleBlogPost();
 			break;
+
+			case 'blog.all':
+				$controller = new BlogController();
+				$controller->AllBlogPost();
+			break;
 		
 		default:
 			echo "There isnt any page matching your request";
