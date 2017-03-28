@@ -17,11 +17,21 @@ class BlogController extends Controller{
 
 	//This function name must match the one in your routes
 	public function show(){
+
+		$blogs = Blog::all();
+
+		$blogCount = Blog::count();
+
 		//Tells PHP which view you want to open
 		
 		//echo "Home Page";
 
-		$view = new BlogView();
+		//syntax when only passing one variable through to the view
+		// $view = new BlogView(['blogs' => $blogs]);
+
+		//only need to use compact when more than one variable is being passed through to the view
+
+		$view = new BlogView(compact('blogs', 'blogCount'));
 		$view->render();
 
 	}
@@ -83,16 +93,63 @@ class BlogController extends Controller{
 	}
 
 
-	public function AllBlogPost() {
+	public function edit() {
 
-		//Get the blog post that has the relevant ID
-		$masterBlog = new Blog();
-		$allBlog = $this -> $masterBlog -> getBlogs();
-		// $listBlogs = $allBlog -> getBlogs;
-		$view = new AllBlogView();
+		$blogPost = $this->getFormData($_GET['id']);
+		$view = new BlogCreateView(['blogPost' => $blogPost]);
 		$view->render();
 
 	}
+
+	public function update() {
+
+		$blogPost = new Blog((int)$_GET['id']);
+
+		$blogPost->processArray($_POST);
+
+		if (! $blogPost->isValid()) {
+
+			$_SESSION['blog.create'] = $blogPost;
+			header("Location: .\?page=blog.edit&id=".$_GET['id']);
+			exit();
+		}
+
+		if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+
+			//Remove the old images if a new image is uploaded
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbnails/$blogPost->image');
+
+			$blogPost->saveImage($_FILES['image']['tmp_name']);
+
+		} else if(isset($_POST['removeImage']) && ($_POST['removeImage']) === "true") {
+
+			//if someone hasnt uploaded a new image bu as pressed the remove image button
+			$blogPost->image = null;
+
+			//Remove the old images
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbnails/$blogPost->image');
+
+		}
+
+		$blogPost->updateDatabase();
+		header("Location:.\?page=blog.post&id=" . $blogPost->id);
+
+	}
+
+	public function remove() {
+		$blogPost = new Blog((int)$_POST['id']);
+
+		if (isset($blogPost->image)) {
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbnails/$blogPost->image');
+		}
+
+		Blog::DatabaseRemove($_POST['id']);
+		header("Location:.\?page=blog");
+	}
+
 
 
 

@@ -7,4 +7,10 @@ namespace App\Controllers;
 
 class Controller {
 
+	protected static $auth;
+
+	public static function registerAuthService($auth) {
+		self::$auth = $auth;
+	}
+
 }

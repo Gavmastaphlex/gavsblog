@@ -15,6 +15,13 @@ require 'vendor/autoload.php';
 session_start();
 session_regenerate_id(true);
 
+$auth = new App\Services\AuthService();
+
+
+App\Controllers\Controller::registerAuthService($auth);
+
+App\Views\View::registerAuthService($auth);
+
 //Routes tell us which page/function is being loaded and what to load
 require 'routes.php';
 
